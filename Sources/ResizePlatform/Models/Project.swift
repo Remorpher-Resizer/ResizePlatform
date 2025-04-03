@@ -1,14 +1,14 @@
 import Foundation
 
 // Project status
-enum ProjectStatus: String, Codable, CaseIterable {
+public enum ProjectStatus: String, Codable, CaseIterable {
     case draft
     case review
     case approved
     case published
     case archived
     
-    var displayName: String {
+    public var displayName: String {
         switch self {
         case .draft: return "Draft"
         case .review: return "In Review"
@@ -20,13 +20,13 @@ enum ProjectStatus: String, Codable, CaseIterable {
 }
 
 // Project roles
-enum ProjectRole: String, Codable, CaseIterable {
+public enum ProjectRole: String, Codable, CaseIterable {
     case owner
     case editor
     case reviewer
     case viewer
     
-    var displayName: String {
+    public var displayName: String {
         switch self {
         case .owner: return "Owner"
         case .editor: return "Editor"
@@ -35,7 +35,7 @@ enum ProjectRole: String, Codable, CaseIterable {
         }
     }
     
-    var permissions: [ProjectPermission] {
+    public var permissions: [ProjectPermission] {
         switch self {
         case .owner:
             return ProjectPermission.allCases
@@ -50,7 +50,7 @@ enum ProjectRole: String, Codable, CaseIterable {
 }
 
 // Project permissions
-enum ProjectPermission: String, Codable, CaseIterable {
+public enum ProjectPermission: String, Codable, CaseIterable {
     case view
     case edit
     case comment
@@ -61,18 +61,28 @@ enum ProjectPermission: String, Codable, CaseIterable {
 }
 
 // Project member
-struct ProjectMember: Identifiable, Codable {
-    var id: String
-    var userId: String
-    var userName: String
-    var role: ProjectRole
-    var addedAt: Date
-    var invitedBy: String?
-    var lastActivity: Date?
+public struct ProjectMember: Identifiable, Codable {
+    public var id: String
+    public var userId: String
+    public var userName: String
+    public var role: ProjectRole
+    public var addedAt: Date
+    public var invitedBy: String?
+    public var lastActivity: Date?
+    
+    public init(id: String, userId: String, userName: String, role: ProjectRole, addedAt: Date, invitedBy: String? = nil, lastActivity: Date? = nil) {
+        self.id = id
+        self.userId = userId
+        self.userName = userName
+        self.role = role
+        self.addedAt = addedAt
+        self.invitedBy = invitedBy
+        self.lastActivity = lastActivity
+    }
 }
 
 // Project comment
-struct ProjectComment: Identifiable, Codable {
+public struct ProjectComment: Identifiable, Codable {
     var id: String
     var projectId: String
     var designId: String?
@@ -91,20 +101,32 @@ struct ProjectComment: Identifiable, Codable {
 }
 
 // Project activity log entry
-struct ProjectActivity: Identifiable, Codable {
-    var id: String
-    var projectId: String
-    var userId: String
-    var userName: String
-    var activityType: String
-    var description: String
-    var timestamp: Date
-    var metadata: [String: String]?
-    var designId: String?
+public struct ProjectActivity: Identifiable, Codable {
+    public var id: String
+    public var projectId: String
+    public var userId: String
+    public var userName: String
+    public var activityType: String
+    public var description: String
+    public var timestamp: Date
+    public var metadata: [String: String]?
+    public var designId: String?
+    
+    public init(id: String, projectId: String, userId: String, userName: String, activityType: String, description: String, timestamp: Date, metadata: [String: String]? = nil, designId: String? = nil) {
+        self.id = id
+        self.projectId = projectId
+        self.userId = userId
+        self.userName = userName
+        self.activityType = activityType
+        self.description = description
+        self.timestamp = timestamp
+        self.metadata = metadata
+        self.designId = designId
+    }
 }
 
 // Project asset (design or other file)
-struct ProjectAsset: Identifiable, Codable {
+public struct ProjectAsset: Identifiable, Codable {
     var id: String
     var name: String
     var type: String // "design", "image", "document", etc.
@@ -132,27 +154,27 @@ struct ProjectAsset: Identifiable, Codable {
 }
 
 // Complete project
-struct Project: Identifiable, Codable {
-    var id: String
-    var name: String
-    var description: String?
-    var createdAt: Date
-    var updatedAt: Date
-    var createdBy: String
-    var status: ProjectStatus
-    var dueDate: Date?
-    var members: [ProjectMember]
-    var assets: [ProjectAsset]
-    var comments: [ProjectComment]
-    var activities: [ProjectActivity]
-    var tags: [String]
-    var metadata: [String: String]?
-    var brandKitId: String?
-    var templateIds: [String]?
-    var platforms: [String]?
-    var campaignId: String?
-    var parentProjectId: String?
-    var childProjectIds: [String]?
+public struct Project: Identifiable, Codable {
+    public var id: String
+    public var name: String
+    public var description: String?
+    public var createdAt: Date
+    public var updatedAt: Date
+    public var createdBy: String
+    public var status: ProjectStatus
+    public var dueDate: Date?
+    public var members: [ProjectMember]
+    public var assets: [ProjectAsset]
+    public var comments: [ProjectComment]
+    public var activities: [ProjectActivity]
+    public var tags: [String]
+    public var metadata: [String: String]?
+    public var brandKitId: String?
+    public var templateIds: [String]?
+    public var platforms: [String]?
+    public var campaignId: String?
+    public var parentProjectId: String?
+    public var childProjectIds: [String]?
     
     // Get assets of a specific type
     func assets(ofType type: String) -> [ProjectAsset] {
@@ -200,7 +222,7 @@ struct Project: Identifiable, Codable {
 }
 
 // Project template for starting new projects
-struct ProjectTemplate: Identifiable, Codable {
+public struct ProjectTemplate: Identifiable, Codable {
     var id: String
     var name: String
     var description: String?

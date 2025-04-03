@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct NewProjectView: View {
+public struct NewProjectView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var projectManager: ProjectManager
     
@@ -14,7 +14,7 @@ struct NewProjectView: View {
         projectManager.templates
     }
     
-    var body: some View {
+    public var body: some View {
         NavigationStack {
             Form {
                 Section("Project Details") {

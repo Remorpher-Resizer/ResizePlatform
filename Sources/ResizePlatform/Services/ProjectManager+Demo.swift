@@ -4,7 +4,7 @@ import SwiftUI
 extension ProjectManager {
     
     /// Creates demo data for testing the project management system
-    func createDemoData() {
+    public func createDemoData() {
         // Clear existing data
         projects = []
         templates = []

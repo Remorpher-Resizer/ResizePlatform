@@ -7,13 +7,14 @@ let package = Package(
         .macOS(.v11)
     ],
     products: [
-        .executable(name: "ResizePlatform", targets: ["ResizePlatform"])
+        .executable(name: "ResizePlatform", targets: ["ResizePlatform"]),
+        .library(name: "ResizePlatform", targets: ["ResizePlatform"])
     ],
     dependencies: [
         // No external dependencies
     ],
     targets: [
-        .executableTarget(
+        .target(
             name: "ResizePlatform",
             dependencies: []
         )

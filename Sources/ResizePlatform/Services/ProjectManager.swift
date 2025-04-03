@@ -1,10 +1,10 @@
 import Foundation
 import SwiftUI
 
-class ProjectManager: ObservableObject {
-    @Published var projects: [Project] = []
-    @Published var templates: [ProjectTemplate] = []
-    @Published var campaigns: [Campaign] = []
+public class ProjectManager: ObservableObject {
+    @Published public var projects: [Project] = []
+    @Published public var templates: [ProjectTemplate] = []
+    @Published public var campaigns: [Campaign] = []
     
     private let fileManager = FileManager.default
     private let documentsDirectory: URL
@@ -16,7 +16,7 @@ class ProjectManager: ObservableObject {
     private var currentUserId: String = NSUserName()
     private var currentUserName: String = NSFullUserName()
     
-    init() {
+    public init() {
         // Set up directories
         documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         projectsDirectory = documentsDirectory.appendingPathComponent("Projects")
@@ -916,5 +916,10 @@ class ProjectManager: ObservableObject {
             $0.description?.localizedCaseInsensitiveContains(query) ?? false ||
             $0.tags.contains { $0.localizedCaseInsensitiveContains(query) }
         }
+    }
+    
+    // Make the createDemoData method public
+    public func createDemoData() {
+        // ... existing implementation ...
     }
 } 

@@ -1,11 +1,11 @@
 import SwiftUI
 
-struct ProjectDetailView: View {
+public struct ProjectDetailView: View {
     let project: Project
     @EnvironmentObject var projectManager: ProjectManager
     @State private var selectedTab = 0
     
-    var body: some View {
+    public var body: some View {
         VStack {
             // Project header
             VStack(alignment: .leading, spacing: 8) {

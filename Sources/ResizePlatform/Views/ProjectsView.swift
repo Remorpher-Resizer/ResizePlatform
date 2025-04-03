@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ProjectsView: View {
+public struct ProjectsView: View {
     @EnvironmentObject var projectManager: ProjectManager
     @State private var showNewProjectSheet = false
     @State private var searchQuery = ""
@@ -27,7 +27,7 @@ struct ProjectsView: View {
         return result
     }
     
-    var body: some View {
+    public var body: some View {
         NavigationSplitView {
             VStack {
                 // Search bar
